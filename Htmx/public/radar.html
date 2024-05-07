@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.css">
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #map { height: 600px; }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+        .header { background: #f8f9fa; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .header h1 { margin: 0; }
+        .back-link { display: inline-block; margin-top: 20px; color: white; background-color: #007bff; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+        .back-link:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <h1>Radar Map</h1>
+    </div>
+</div>
+<div class="container">
+    <div id="map"></div>
+    <a href="/" class="back-link">Back to Home</a>
+</div>
+<script>
+    var mymap = L.map('map').setView([47.0166, -113.8009], 6);
+    var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osm = new L.TileLayer(osmUrl, {minZoom: 6, maxZoom: 12, attribution: osmAttrib});
+    mymap.addLayer(osm);
+
+    var rainviewer = L.control.rainviewer({
+        position: 'bottomleft',
+        nextButtonText: '>',
+        playStopButtonText: 'Start/Stop',
+        prevButtonText: '<',
+        positionSliderLabelText: "Time:",
+        opacitySliderLabelText: "Opacity:",
+        animationInterval: 500,
+        opacity: 0.5
+    });
+    rainviewer.addTo(mymap);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+//- radarMap.pug depreciated and instead using html, idk why pug didn't play well with js
+doctype html
+html
+    head
+        title error
+
+        style
+            | #map { height: 600px; width: 100%; }
+    body
+        .container
+            h1.text-3xl.font-bold.mb-4 Radar Map
+            #map Loading map...
+        //- Include external JavaScript
+        include test.html
+        a(hx-get="/__/functions/weather" hx-target="#main") Back to Weather
+        div#main

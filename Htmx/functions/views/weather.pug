@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        title Weather in #{city.name}
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css")
+    body(class="bg-gray-100 p-8")
+        div(class="max-w-3xl mx-auto bg-white shadow-lg p-6 rounded-lg")
+
+            h1(class="text-2xl font-bold text-center mb-4") Weather in #{city.name}
+
+            // Today's Weather Card
+            if today
+                div(class="p-4 bg-blue-100 rounded-lg shadow-md mb-6")
+                    h2(class="text-xl font-semibold mb-2") Today
+                    div(class="flex items-center")
+                        img(src=`https://openweathermap.org/img/w/${today.icon}.png` alt="Weather Icon" class="w-16 h-16 mr-4")
+                        div
+                            p(class="text-2xl font-semibold") #{today.temp} °F
+                            p(class="text-gray-700") Condition: #{today.condition}
+                            p(class="text-gray-700") Humidity: #{today.humidity}%
+                            p(class="text-gray-700") Wind: #{today.wind} mph
+            else
+                p No weather data available for today.
+
+            // Forecast Cards for Upcoming Days
+            if forecasts.length > 0
+                div(class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3")
+                    each forecast in forecasts
+                        div(class="bg-white shadow-md rounded-lg p-4")
+                            h3(class="font-semibold mb-1") #{forecast.date}
+                            div(class="flex items-center mb-2")
+                                img(src=`https://openweathermap.org/img/w/${forecast.icon}.png` alt="Weather Icon" class="w-12 h-12 mr-2")
+                                p(class="text-lg font-semibold") #{forecast.temp} °F
+                            p(class="text-gray-600") Condition: #{forecast.condition}
+            else
+                p No forecast data available.
+

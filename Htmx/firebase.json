@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      { "source": "/__/functions/test", "function": "test" },
+      { "source": "/__/functions/weather", "function": "weather" },
+      { "source": "/radar", "destination": "/radar.html" }
+    ]
+  },
+  "functions": {
+    "source": "functions"
+  }
+}
